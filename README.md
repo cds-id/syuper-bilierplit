@@ -1,11 +1,28 @@
 # Hardhat Boilerplate
 
-A production-ready Hardhat boilerplate with TypeScript, multi-network support, and best practices.
+A production-ready Hardhat boilerplate with TypeScript, Bun, multi-network support, and best practices.
+
+## Use This Template
+
+```bash
+# Using degit (recommended)
+bunx degit cds-id/syuper-bilierplit my-project
+cd my-project
+bun install
+
+# Or using git clone
+git clone https://github.com/cds-id/syuper-bilierplit.git my-project
+cd my-project
+rm -rf .git
+bun install
+git init
+```
 
 ## Features
 
 - Solidity 0.8.20 with optimizer and viaIR enabled
 - TypeScript support with TypeChain
+- Bun as package manager (fast installs)
 - Multi-network configuration (local, testnet, mainnet)
 - OpenZeppelin contracts included
 - Gas reporting and coverage tools
@@ -31,19 +48,19 @@ A production-ready Hardhat boilerplate with TypeScript, multi-network support, a
 ### 1. Install Dependencies
 
 ```bash
-npm install
+bun install
 ```
 
 ### 2. Compile Contracts
 
 ```bash
-npm run compile
+bun run compile
 ```
 
 ### 3. Run Tests
 
 ```bash
-npm test
+bun test
 ```
 
 ---
@@ -56,32 +73,32 @@ This project uses **Hardhat vars** instead of `.env` files for secure configurat
 
 ```bash
 # Required for deployment to testnet/mainnet
-npx hardhat vars set DEPLOYER_PRIVATE_KEY
+bunx hardhat vars set DEPLOYER_PRIVATE_KEY
 
 # Required for contract verification
-npx hardhat vars set ETHERSCAN_API_KEY     # For Ethereum networks
-npx hardhat vars set BASESCAN_API_KEY      # For Base networks
+bunx hardhat vars set ETHERSCAN_API_KEY     # For Ethereum networks
+bunx hardhat vars set BASESCAN_API_KEY      # For Base networks
 
 # Optional: Custom RPC URLs (defaults provided)
-npx hardhat vars set SEPOLIA_RPC_URL
-npx hardhat vars set BASE_SEPOLIA_RPC_URL
-npx hardhat vars set MAINNET_RPC_URL
-npx hardhat vars set BASE_RPC_URL
+bunx hardhat vars set SEPOLIA_RPC_URL
+bunx hardhat vars set BASE_SEPOLIA_RPC_URL
+bunx hardhat vars set MAINNET_RPC_URL
+bunx hardhat vars set BASE_RPC_URL
 
 # Optional: For gas reporting in USD
-npx hardhat vars set COINMARKETCAP_API_KEY
+bunx hardhat vars set COINMARKETCAP_API_KEY
 ```
 
 ### Viewing Variables
 
 ```bash
-npx hardhat vars list
+bunx hardhat vars list
 ```
 
 ### Deleting Variables
 
 ```bash
-npx hardhat vars delete VARIABLE_NAME
+bunx hardhat vars delete VARIABLE_NAME
 ```
 
 ---
@@ -92,12 +109,12 @@ npx hardhat vars delete VARIABLE_NAME
 
 | Network      | Chain ID | Type       | Command                       |
 |--------------|----------|------------|-------------------------------|
-| hardhat      | 31337    | Local      | `npm test` (in-memory)        |
-| localhost    | 31337    | Local      | `npm run deploy:local`        |
-| sepolia      | 11155111 | Testnet    | `npm run deploy:sepolia`      |
-| baseSepolia  | 84532    | Testnet    | `npm run deploy:base-sepolia` |
-| mainnet      | 1        | Production | `npm run deploy:mainnet`      |
-| base         | 8453     | Production | `npm run deploy:base`         |
+| hardhat      | 31337    | Local      | `bun test` (in-memory)        |
+| localhost    | 31337    | Local      | `bun run deploy:local`        |
+| sepolia      | 11155111 | Testnet    | `bun run deploy:sepolia`      |
+| baseSepolia  | 84532    | Testnet    | `bun run deploy:base-sepolia` |
+| mainnet      | 1        | Production | `bun run deploy:mainnet`      |
+| base         | 8453     | Production | `bun run deploy:base`         |
 
 ---
 
@@ -108,7 +125,7 @@ Deploy to a local Hardhat node for development and testing.
 #### Step 1: Start Local Node
 
 ```bash
-npm run node
+bun run node
 ```
 
 This starts a local Ethereum node at `http://127.0.0.1:8545` with pre-funded accounts.
@@ -116,7 +133,7 @@ This starts a local Ethereum node at `http://127.0.0.1:8545` with pre-funded acc
 #### Step 2: Deploy (in a new terminal)
 
 ```bash
-npm run deploy:local
+bun run deploy:local
 ```
 
 ---
@@ -133,24 +150,24 @@ Deploy to Ethereum Sepolia testnet.
 
 2. Set your deployer private key:
    ```bash
-   npx hardhat vars set DEPLOYER_PRIVATE_KEY
+   bunx hardhat vars set DEPLOYER_PRIVATE_KEY
    ```
 
 3. (Optional) Set a custom RPC:
    ```bash
-   npx hardhat vars set SEPOLIA_RPC_URL
+   bunx hardhat vars set SEPOLIA_RPC_URL
    ```
 
 #### Deploy
 
 ```bash
-npm run deploy:sepolia
+bun run deploy:sepolia
 ```
 
 #### Verify Contract
 
 ```bash
-npx hardhat verify --network sepolia <CONTRACT_ADDRESS> <CONSTRUCTOR_ARGS>
+bunx hardhat verify --network sepolia <CONTRACT_ADDRESS> <CONSTRUCTOR_ARGS>
 ```
 
 ---
@@ -167,24 +184,24 @@ Deploy to Base Sepolia testnet.
 
 2. Set your deployer private key:
    ```bash
-   npx hardhat vars set DEPLOYER_PRIVATE_KEY
+   bunx hardhat vars set DEPLOYER_PRIVATE_KEY
    ```
 
 3. (Optional) Set BaseScan API key for verification:
    ```bash
-   npx hardhat vars set BASESCAN_API_KEY
+   bunx hardhat vars set BASESCAN_API_KEY
    ```
 
 #### Deploy
 
 ```bash
-npm run deploy:base-sepolia
+bun run deploy:base-sepolia
 ```
 
 #### Verify Contract
 
 ```bash
-npm run verify:base-sepolia <CONTRACT_ADDRESS> <CONSTRUCTOR_ARGS>
+bun run verify:base-sepolia <CONTRACT_ADDRESS> <CONSTRUCTOR_ARGS>
 ```
 
 ---
@@ -201,55 +218,55 @@ Deploy to Ethereum mainnet or Base mainnet.
 
 4. Set your deployer private key:
    ```bash
-   npx hardhat vars set DEPLOYER_PRIVATE_KEY
+   bunx hardhat vars set DEPLOYER_PRIVATE_KEY
    ```
 
 5. Set API keys for verification:
    ```bash
-   npx hardhat vars set ETHERSCAN_API_KEY   # For Ethereum mainnet
-   npx hardhat vars set BASESCAN_API_KEY    # For Base mainnet
+   bunx hardhat vars set ETHERSCAN_API_KEY   # For Ethereum mainnet
+   bunx hardhat vars set BASESCAN_API_KEY    # For Base mainnet
    ```
 
 #### Deploy to Ethereum Mainnet
 
 ```bash
-npm run deploy:mainnet
+bun run deploy:mainnet
 ```
 
 #### Deploy to Base Mainnet
 
 ```bash
-npm run deploy:base
+bun run deploy:base
 ```
 
 #### Verify on Mainnet
 
 ```bash
 # Ethereum
-npm run verify:mainnet <CONTRACT_ADDRESS> <CONSTRUCTOR_ARGS>
+bun run verify:mainnet <CONTRACT_ADDRESS> <CONSTRUCTOR_ARGS>
 
 # Base
-npm run verify:base <CONTRACT_ADDRESS> <CONSTRUCTOR_ARGS>
+bun run verify:base <CONTRACT_ADDRESS> <CONSTRUCTOR_ARGS>
 ```
 
 ---
 
 ## Available Scripts
 
-| Script                    | Description                           |
-|---------------------------|---------------------------------------|
-| `npm run compile`         | Compile contracts                     |
-| `npm test`                | Run tests                             |
-| `npm run test:coverage`   | Run tests with coverage report        |
-| `npm run test:gas`        | Run tests with gas reporting          |
-| `npm run node`            | Start local Hardhat node              |
-| `npm run deploy:local`    | Deploy to localhost                   |
-| `npm run deploy:sepolia`  | Deploy to Ethereum Sepolia            |
-| `npm run deploy:base-sepolia` | Deploy to Base Sepolia            |
-| `npm run deploy:mainnet`  | Deploy to Ethereum mainnet            |
-| `npm run deploy:base`     | Deploy to Base mainnet                |
-| `npm run clean`           | Clean build artifacts                 |
-| `npm run typechain`       | Generate TypeChain types              |
+| Script                      | Description                           |
+|-----------------------------|---------------------------------------|
+| `bun run compile`           | Compile contracts                     |
+| `bun test`                  | Run tests                             |
+| `bun run test:coverage`     | Run tests with coverage report        |
+| `bun run test:gas`          | Run tests with gas reporting          |
+| `bun run node`              | Start local Hardhat node              |
+| `bun run deploy:local`      | Deploy to localhost                   |
+| `bun run deploy:sepolia`    | Deploy to Ethereum Sepolia            |
+| `bun run deploy:base-sepolia` | Deploy to Base Sepolia              |
+| `bun run deploy:mainnet`    | Deploy to Ethereum mainnet            |
+| `bun run deploy:base`       | Deploy to Base mainnet                |
+| `bun run clean`             | Clean build artifacts                 |
+| `bun run typechain`         | Generate TypeChain types              |
 
 ---
 
@@ -260,8 +277,8 @@ npm run verify:base <CONTRACT_ADDRESS> <CONSTRUCTOR_ARGS>
 3. Write tests in `test/`
 4. Compile and test:
    ```bash
-   npm run compile
-   npm test
+   bun run compile
+   bun test
    ```
 
 ---
@@ -281,6 +298,7 @@ npm run verify:base <CONTRACT_ADDRESS> <CONSTRUCTOR_ARGS>
 - [Hardhat Documentation](https://hardhat.org/docs)
 - [Solidity Documentation](https://docs.soliditylang.org)
 - [OpenZeppelin Contracts](https://docs.openzeppelin.com/contracts)
+- [Bun Documentation](https://bun.sh/docs)
 - [Etherscan](https://etherscan.io)
 - [Basescan](https://basescan.org)
 
